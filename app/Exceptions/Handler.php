@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -51,5 +52,25 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         return parent::render($request, $exception);
+    }
+
+
+    /**
+     * Override the unauthenticated() method which called when user tries to access
+     * a protected resource, in this case i check if the request is a json request then
+     * it returns a json response with ‘unauthenticated’ message otherwise it redirect
+     * to the login page.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['state' => 0, 'message' => 'Unauthenticated.'], 401);
+        }
+
+        return redirect()->guest(route('auth.login'));
     }
 }
