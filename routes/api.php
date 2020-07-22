@@ -24,3 +24,14 @@ Route::post('register', 'Auth\\RegisterController@register')->name('register');
 Route::get('logout', 'Auth\\LoginController@logout')->name('logout');
 
 Route::get('check-auth', 'Auth\\LoginController@checkAuth')->name('logout');
+
+Route::resource('categories', 'CategoryController');
+
+Route::resource('posts', 'PostsController');
+
+Route::resource('tags', 'TagsController');
+
+Route::resource('comments', 'CommentsController');
+
+Route::get('profile', 'UsersController@profile');
+Route::resource('users', 'UsersController');
