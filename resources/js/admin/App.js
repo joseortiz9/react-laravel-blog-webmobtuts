@@ -6,24 +6,32 @@ import {
     Route,
     Switch
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import rootReducer from './redux/RootReducer';
 import Header from './components/partials/Header';
 import Sidebar from './components/partials/Sidebar';
 import Footer from './components/partials/Footer';
 import Routes from "./Routes";
 
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+
 export default class App extends Component {
     render() {
         return (
-            <Router>
-                <div className="wrapper">
-                    <Header/>
-                    <Sidebar/>
+            <Provider store={store}>
+                <Router>
+                    <div className="wrapper">
+                        <Header/>
+                        <Sidebar/>
 
-                    <Routes/>
+                        <Routes/>
 
-                    <Footer/>
-                </div>
-            </Router>
+                        <Footer/>
+                    </div>
+                </Router>
+            </Provider>
         );
     }
 };
