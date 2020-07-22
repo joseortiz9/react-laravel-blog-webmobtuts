@@ -1,15 +1,14 @@
+
 import React from 'react';
+import { withRouter } from "react-router";
 
 const Footer  = (props) => {
-    return (
+    return props.location.pathname != '/login' ? (
         <footer className="main-footer">
-            <div className="pull-right hidden-xs">
-                <b>Version</b> 2.4.0
-            </div>
             <strong>Copyright &copy; 2014-2016.</strong> All rights
             reserved.
         </footer>
-    )
+    ) : null;
 };
 
-export default Footer;
+export default withRouter(Footer);
