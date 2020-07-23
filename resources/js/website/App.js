@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {HashRouter as Router} from "react-router-dom";
+import Routes from './Routes';
+import Header from './components/partials/Header';
+import Footer from './components/partials/Footer';
+import GlobalContext from './GlobalContext';
+import Category from './apis/Category';
 
 export default class App extends Component {
+
+    constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            categories: []
+        }
+    }
+
+    componentDidMount()
+    {
+        Category.getAll().then(response => this.setState({categories: response.data.data}));
+    }
+
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Hello</div>
-
-                            <div className="card-body">I'm the website</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <GlobalContext.Provider value={{categories: this.state.categories}}>
+                <Router>
+                    <Header />
+                    <Routes />
+                    <Footer />
+                </Router>
+            </GlobalContext.Provider>
         );
     }
 }
