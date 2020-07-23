@@ -45,7 +45,7 @@ class Edit extends React.Component
                 self.props.handleTitleChange('');
 
                 // redirect
-                setTimeout(() => self.props.history.push('/tags'), 2000);
+                setTimeout(() => self.props.history.push('/tags'), 100);
             });
     }
 
