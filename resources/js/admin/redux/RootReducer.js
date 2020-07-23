@@ -4,12 +4,14 @@ import categoryReducer  from './reducers/CategoryReducer';
 import tagReducer  from './reducers/TagReducer';
 import postReducer from "./reducers/PostReducer";
 import commentReducer from "./reducers/CommentReducer";
+import userReducer from "./actions/UserActions";
 
 const rootReducer = combineReducers({
     category: categoryReducer,
     tag: tagReducer,
     post: postReducer,
-    comment: commentReducer
+    comment: commentReducer,
+    user: userReducer
 });
 
 export default rootReducer;
