@@ -2,7 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import { withRouter } from "react-router";
 import GlobalContext from '../../GlobalContext';
-
+import "../../css/form.css";
+import Auth from '../../apis/Auth';
 
 class Header extends React.Component
 {
@@ -13,6 +14,18 @@ class Header extends React.Component
         this.state = {
             category_id: ""
         };
+
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+
+        Auth.logout((response) => {
+            this.props.history.push("/");
+        }, (err) => {
+            alert(err.response.data.message);
+        });
     }
 
     componentDidMount()
@@ -59,7 +72,7 @@ class Header extends React.Component
                     <div className="header-content twelve columns">
 
                         <h1 id="logo-text"><Link to="/">React Laravel Blog</Link></h1>
-                        <p id="intro">Interactive website built with react and laravel</p>
+                        <p id="intro">Excellence and Perfection</p>
 
                     </div>
 
@@ -75,7 +88,21 @@ class Header extends React.Component
                             {
                                 this.context.categories.map(category => <li className={this.state.category_id==category.id?'current':''} key={category.id}><Link to={'/category/' + category.id + '/' + category.slug}>{ category.title }</Link></li>)
                             }
+
+                            {
+                                localStorage.getItem("user.api_token")!=null?(
+                                    <li className="auth-links">
+                                        <a href='#' onClick={this.handleLogout}>logout</a>
+                                    </li>
+                                ) : (
+                                    <li className="auth-links">
+                                        <Link to='/login'>Login</Link>
+                                        <Link to='/register'>Register</Link>
+                                    </li>
+                                )
+                            }
                         </ul>
+
 
                     </div>
 
