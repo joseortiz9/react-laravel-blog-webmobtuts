@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import Auth from '../../apis/Auth';
 
 class Header extends React.Component {
@@ -68,7 +69,7 @@ class Header extends React.Component {
                                     </li>
                                     <li className="user-footer">
                                         <div className="pull-left">
-                                            <a href="#" className="btn btn-default btn-flat">Profile</a>
+                                            <Link to='/profile' className="btn btn-default btn-flat">Profile</Link>
                                         </div>
                                         <div className="pull-right">
                                             <a href="#" onClick={this.handleLogout}

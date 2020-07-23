@@ -1,6 +1,6 @@
-
 import React, { Component } from 'react';
 import Breadcrumb from '../partials/Breadcrumb';
+import { Link } from 'react-router-dom';
 
 class Dashboard extends Component
 {
@@ -15,6 +15,7 @@ class Dashboard extends Component
     render() {
         return (
             <div className="content-wrapper">
+
                 <section className="content-header">
                     <h1>
                         Dashboard
@@ -26,7 +27,58 @@ class Dashboard extends Component
                 </section>
 
                 <section className="content">
+                    <div className="row">
+                        <div className="col-lg-3 col-xs-6">
+                            <div className="small-box bg-aqua">
+                                <div className="inner">
+                                    <h3>Posts</h3>
+                                </div>
+                                <div className="icon">
+                                    <i className="fa fa-newspaper-o"></i>
+                                </div>
+                                <Link to="/posts" className="small-box-footer">More info <i className="fa fa-arrow-circle-right"></i></Link>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-xs-6">
+                            <div className="small-box bg-green">
+                                <div className="inner">
+                                    <h3>Categories</h3>
 
+                                    <p></p>
+                                </div>
+                                <div className="icon">
+                                    <i className="fa fa-list"></i>
+                                </div>
+                                <Link to="/categories" className="small-box-footer">More info <i className="fa fa-arrow-circle-right"></i></Link>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-xs-6">
+                            <div className="small-box bg-yellow">
+                                <div className="inner">
+                                    <h3>Comments</h3>
+
+                                    <p></p>
+                                </div>
+                                <div className="icon">
+                                    <i className="fa fa-comments-o"></i>
+                                </div>
+                                <Link to="/comments" className="small-box-footer">More info <i className="fa fa-arrow-circle-right"></i></Link>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-xs-6">
+                            <div className="small-box bg-red">
+                                <div className="inner">
+                                    <h3>Users</h3>
+
+                                    <p></p>
+                                </div>
+                                <div className="icon">
+                                    <i className="fa fa-users"></i>
+                                </div>
+                                <Link to="/users" className="small-box-footer">More info <i className="fa fa-arrow-circle-right"></i></Link>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         )

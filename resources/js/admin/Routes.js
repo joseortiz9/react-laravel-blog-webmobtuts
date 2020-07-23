@@ -1,5 +1,10 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {
+    HashRouter as Router,
+    Link,
+    Route,
+    Switch
+} from 'react-router-dom';
 import Login from "./components/login/Login";
 import AuthenticatedRoute from './AuthenticatedRoute';
 import Dashboard from "./components/pages/Dashboard";
@@ -16,6 +21,7 @@ import ListComments from "./components/pages/comments/Index";
 import ListUsers from "./components/pages/users/Index";
 import AddUsers from "./components/pages/users/Add";
 import EditUsers from "./components/pages/users/Edit";
+import Profile from "./components/pages/profile/Profile";
 
 class Routes extends React.Component
 {
@@ -38,6 +44,7 @@ class Routes extends React.Component
                 <AuthenticatedRoute exact path='/users' component={ListUsers} />
                 <AuthenticatedRoute path='/users/add' component={AddUsers} />
                 <AuthenticatedRoute path='/users/edit/:id' component={EditUsers} />
+                <AuthenticatedRoute path='/profile' component={Profile} />
             </Switch>
         )
     }
